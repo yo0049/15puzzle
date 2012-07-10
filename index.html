@@ -1,1 +1,58 @@
-test
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>15puzzle</title>
+
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                    var pl = 192;
+                    var boad=[];
+                    for (var i=0;i<=3;i++){
+                    boad[i]=[];
+                    for(var j=0;j<=3;j++){
+                    boad[i][j]=i+j*4+1;
+                    }      }
+
+                    var $m=$("#masterblock").html();
+                    var init = function(){
+                    for (var i =0;i<=3;i++){
+                    for (var j=0;j<=3;j++){
+                    $("#masterblock").clone().attr("id",String(boad[i][j])).text(String(boad[i][j])).css("visibility","visible").css("top",String(j*pl)+"px").css("left",String(i*pl)+"px").css("background-image","url(wall.jpg)").css("background-position",String(-i*pl)+"px "+String(-j*pl)+"px").appendTo("#stage");
+                    } }
+                    var setP =function(pX,pY){
+                        $("#"+String(boad[pX][pY])).css("top",String(pY*pl)+"px").css("left",String(pX*pl)+"px");
+                    }
+                    $("#16").css("visibility","hidden");
+                    $("#stage").click(function(){
+                        var offset = $("#stage").offset();
+                        var X = Math.floor((event.pageX - offset.left)/pl);
+                        var Y = Math.floor((event.pageY - offset.top)/pl);
+                        for(var dx = -1;dx<=1;dx++){
+                        for(var dy = -1;dy<=1;dy++){
+                        if((dx==0||dy==0)&&(X+dx>=0)&&(X+dx <=3)&&(Y+dy>=0)&&(Y+dy<=3)&& (boad[X+dx][Y+dy]==16)){
+                        boad[X+dx][Y+dy]= boad[X][Y];
+                        boad[X][Y]=16;
+                        setP(X,Y);
+                        setP(X+dx,Y+dy);
+                        break;
+                        }
+                      //  alert(X+":"+ Y+":"+String(boad[X][Y]));
+                        }} });}
+                    init();
+            })    
+
+        </script>
+    </head>
+    <body>
+        <div id="stage" style="position:relative; top:100px;left:100px; display:table;  width:768px; height:768px; " >
+        </div>	
+        <div style="visibility:none">
+            <div id="masterblock" align="center" style="position:absolute; display:table-cell;  width:192px; height:192px;vertical-align: middle;visibility: hidden; background-repeat:no-repeat;  "><span id="number" style="vertical-align:middle;">1</span>
+            </div>
+        </div>
+    </body>
+</html>
