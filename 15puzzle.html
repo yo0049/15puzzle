@@ -27,7 +27,7 @@ $(document).ready(function(){
                     $("#"+String(boad[pX][pY])).css("top",String(pY*pl)+"px").css("left",String(pX*pl)+"px");
                 }
                 //TODO ブロックを交換してシャッフル。必ず偶数回行う。
-                
+
                 $("#16").css("visibility","hidden");
                 //クリックイベント
                 $("#stage").click(function(){
@@ -48,10 +48,23 @@ $(document).ready(function(){
 
                 } );
                 //TODO keydownイベント
+                $("body").keydown(function(e){
+                    switch(e.which){
+                        case 37://左
+                            alert("left");
+                        break;
+                        case 38://上
+                            break;
 
-        
+                        case 39://右
+                            break;
+                        case 40://下
+                            break;
+                    }
+                })
+
         }
-                init();
+        init();
 })    
 
 </script>
