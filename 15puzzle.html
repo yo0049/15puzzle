@@ -24,7 +24,6 @@ $(document).ready(function(){
                     if(boad[i][j]==n){ pos.x=i;pos.y=j;};
                 }
             }
-
             return pos; 
         }
 
@@ -57,37 +56,52 @@ $(document).ready(function(){
                         }}
 
                 } );
-                //TODO debug!!  keydownイベント
+                //  keydownイベント
+                // swichの前にgetPをしたいがそうすると、矢印キーを連打した時に挙動がおかしくなる。
                 $("body").keydown(function(e){
                     var tmpx=0,tmpy=0;
-                    tmpx=getP(16).x;
-                    tmpy=getP(16).y;
                     switch(e.which){
                         case 37://左
-                        boad[tmpx][tmpy]=boad[tmpx-1][tmpy];
-                        boad[tmpx-1][tmpy]=16;
-                        setP(tmpx-1,tmpy);
-                        setP(tmpx,tmpy);
+                            tmpx=getP(16).x;
+                        tmpy=getP(16).y;
+                        if(tmpx>0){
+                            boad[tmpx][tmpy]=boad[tmpx-1][tmpy];
+                            boad[tmpx-1][tmpy]=16;
+                            setP(tmpx-1,tmpy);
+                            setP(tmpx,tmpy);
+                        }
                         break;
                         case 38://上
-                        boad[tmpx][tmpy]=boad[tmpx][tmpy-1];
-                        boad[tmpx][tmpy-1]=16;
-                        setP(tmpx,tmpy-1);
-                        setP(tmpx,tmpy);
-                            break;
+                            tmpx=getP(16).x;
+                        tmpy=getP(16).y;
+                        if(tmpy>0){
+                            boad[tmpx][tmpy]=boad[tmpx][tmpy-1];
+                            boad[tmpx][tmpy-1]=16;
+                            setP(tmpx,tmpy-1);
+                            setP(tmpx,tmpy);
+                        }
+                        break;
 
                         case 39://右
-                        boad[tmpx][tmpy]=boad[tmpx+1][tmpy];
-                        boad[tmpx+1][tmpy]=16;
-                        setP(tmpx+1,tmpy);
-                        setP(tmpx,tmpy);
-                            break;
+                            tmpx=getP(16).x;
+                        tmpy=getP(16).y;
+                        if(tmpx<3){
+                            boad[tmpx][tmpy]=boad[tmpx+1][tmpy];
+                            boad[tmpx+1][tmpy]=16;
+                            setP(tmpx+1,tmpy);
+                            setP(tmpx,tmpy);
+                        }
+                        break;
                         case 40://下
-                        boad[tmpx][tmpy]=boad[tmpx][tmpy+1];
-                        boad[tmpx][tmpy+1]=16;
-                        setP(tmpx,tmpy+1);
-                        setP(tmpx,tmpy);
-                            break;
+                            tmpx=getP(16).x;
+                        tmpy=getP(16).y;
+                        if(tmpy<3){
+                            boad[tmpx][tmpy]=boad[tmpx][tmpy+1];
+                            boad[tmpx][tmpy+1]=16;
+                            setP(tmpx,tmpy+1);
+                            setP(tmpx,tmpy);
+                        }
+                        break;
                     }
                 })
 
