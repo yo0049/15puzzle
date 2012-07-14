@@ -4,18 +4,29 @@
 <meta charset="UTF-8">
 <title>15puzzle</title>
 
-
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 
     var pl = 192;
+    //boad初期化
     var boad=[];
     for (var i=0;i<=3;i++){
         boad[i]=[];
         for(var j=0;j<=3;j++){
             boad[i][j]=i+j*4+1;
         }      }
+        //与えられた数字の位置を返す
+        var getP = function(n){
+            var pos={x:0,y:0};
+            for (var i=0;i<=3;i++){
+                for(var j=0;j<=3;j++){
+                    if(boad[i][j]==n){ pos.x=i;pos.y=j;};
+                }
+            }
+
+            return pos; 
+        }
 
         var $m=$("#masterblock").html();
         var init = function(){
@@ -43,22 +54,39 @@ $(document).ready(function(){
                                 setP(X+dx,Y+dy);
                                 break;
                             }
-                            //  alert(X+":"+ Y+":"+String(boad[X][Y]));
                         }}
 
                 } );
-                //TODO keydownイベント
+                //TODO debug!!  keydownイベント
                 $("body").keydown(function(e){
+                    var tmpx=0,tmpy=0;
+                    tmpx=getP(16).x;
+                    tmpy=getP(16).y;
                     switch(e.which){
                         case 37://左
-                            alert("left");
+                        boad[tmpx][tmpy]=boad[tmpx-1][tmpy];
+                        boad[tmpx-1][tmpy]=16;
+                        setP(tmpx-1,tmpy);
+                        setP(tmpx,tmpy);
                         break;
                         case 38://上
+                        boad[tmpx][tmpy]=boad[tmpx][tmpy-1];
+                        boad[tmpx][tmpy-1]=16;
+                        setP(tmpx,tmpy-1);
+                        setP(tmpx,tmpy);
                             break;
 
                         case 39://右
+                        boad[tmpx][tmpy]=boad[tmpx+1][tmpy];
+                        boad[tmpx+1][tmpy]=16;
+                        setP(tmpx+1,tmpy);
+                        setP(tmpx,tmpy);
                             break;
                         case 40://下
+                        boad[tmpx][tmpy]=boad[tmpx][tmpy+1];
+                        boad[tmpx][tmpy+1]=16;
+                        setP(tmpx,tmpy+1);
+                        setP(tmpx,tmpy);
                             break;
                     }
                 })
