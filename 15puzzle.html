@@ -37,21 +37,23 @@ $(document).ready(function(){
                 }
 
                 // ブロックを交換してシャッフル。必ず偶数回行う。
+                var i=0;
                 var tmpx1=0,tmpy1=0,tmpv1=0,tmpx2=0,tmpy2=0,tmpv2=0;
-                for(var i=1 ;i<=2;i++){
-                    for(var j=0;j<=1000;j++){
+                while(i<1000){ 
 
-                        tmpx1=Math.floor(Math.random()*3);
-                        tmpy1=Math.floor(Math.random()*3);
-                        tmpv1 = boad[tmpx1][tmpy1];
-                        tmpx2=Math.floor(Math.random()*3);
-                        tmpy2=Math.floor(Math.random()*3);
-                        tmpv2 = boad[tmpx2][tmpy2];
+                    tmpx1=Math.floor(Math.random()*4);
+                    tmpy1=Math.floor(Math.random()*4);
+                    tmpv1 = boad[tmpx1][tmpy1];
 
+                    tmpx2=Math.floor(Math.random()*4);
+                    tmpy2=Math.floor(Math.random()*4);
+                    tmpv2 = boad[tmpx2][tmpy2];
+                    if(tmpx1!=tmpx2 || tmpy1!=tmpy2){
                         boad[tmpx1][tmpy1]=tmpv2;
                         boad[tmpx2][tmpy2]=tmpv1;
-
+                        i++;
                     }
+
                 }
                 for(var i =0;i<=3;i++){
                     for(var j=0;j<=3;j++){
@@ -153,7 +155,7 @@ $(document).ready(function(){
 <div id="stage" style="position:relative; top:100px;left:100px; display:table;  width:768px; height:768px; " >
 </div>	
 <div style="visibility:none">
-    <div id="masterblock" align="center" style="position:absolute; display:table-cell;  width:192px; height:192px;vertical-align: middle;visibility: hidden; background-repeat:no-repeat;  "><span id="number" style="vertical-align:middle;">1</span>
+    <div id="masterblock" align="center" style="position:absolute; display:table-cell;  width:192px; height:192px;vertical-align: middle;visibility: hidden; background-repeat:no-repeat;  font-size:36px; color:white; text-shadow: 4px 0px 16px black"><span id="number" style="vertical-align:middle; ">1</span>
     </div>
 </div>
 </body>
