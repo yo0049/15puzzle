@@ -35,7 +35,7 @@ $(document).ready(function(){
                 var setP =function(pX,pY){
                     $("#"+String(boad[pX][pY])).css("top",String(pY*pl)+"px").css("left",String(pX*pl)+"px");
                 }
-
+/*
                 // ブロックを交換してシャッフル。必ず偶数回行う。
                 var tmpx1=0,tmpy1=0,tmpv1=0,tmpx2=0,tmpy2=0,tmpv2=0;
                 for(var i=1 ;i<=2;i++){
@@ -51,13 +51,28 @@ $(document).ready(function(){
                         boad[tmpx1][tmpy1]=tmpv2;
                         boad[tmpx2][tmpy2]=tmpv1;
 
-                   }
-             }
+                    }
+                }
                 for(var i =0;i<=3;i++){
                     for(var j=0;j<=3;j++){
                         setP(i,j);
                     }
                 }
+*/
+                //クリアのチェック
+                var checkc=function(){
+                    for(var i=0;i<=3;i++){
+                        for(var j=0;j<=3;j++){
+                            if(boad[i][j]!=i+j*4+1){ return; }
+                        }
+                    }
+                    $("#16").css("visibility","visible");
+
+                    $("#stage > *").text("");
+                    alert("Game Clear!!");
+                    return;
+                }
+
 
 
                 $("#16").css("visibility","hidden");
@@ -73,10 +88,10 @@ $(document).ready(function(){
                                 boad[X][Y]=16;
                                 setP(X,Y);
                                 setP(X+dx,Y+dy);
+                                checkc();
                                 break;
                             }
                         }}
-
                 } );
                 //  keydownイベント
                 // swichの前にgetPをしたいがそうすると、矢印キーを連打した時に挙動がおかしくなる。
@@ -125,6 +140,7 @@ $(document).ready(function(){
                         }
                         break;
                     }
+                    checkc();
                 })
 
         }
