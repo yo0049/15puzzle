@@ -7,7 +7,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-
+    var count=0;
     var pl = 192;
     //boad初期化
     var boad=[];
@@ -69,10 +69,15 @@ $(document).ready(function(){
                         }
                     }
                     $("#16").css("visibility","visible");
+                    alert("Game Clear!!");
 
                     $("#stage > *").text("");
-                    alert("Game Clear!!");
                     return;
+                }
+
+                var show_counter = function(){
+                    count++;
+                    $("#counter").text("Count: "+String(count));
                 }
 
 
@@ -90,6 +95,7 @@ $(document).ready(function(){
                                 boad[X][Y]=16;
                                 setP(X,Y);
                                 setP(X+dx,Y+dy);
+                                show_counter();
                                 checkc();
                                 break;
                             }
@@ -108,6 +114,7 @@ $(document).ready(function(){
                             boad[tmpx-1][tmpy]=16;
                             setP(tmpx-1,tmpy);
                             setP(tmpx,tmpy);
+                            show_counter();
                         }
                         break;
                         case 38://上
@@ -118,6 +125,7 @@ $(document).ready(function(){
                             boad[tmpx][tmpy-1]=16;
                             setP(tmpx,tmpy-1);
                             setP(tmpx,tmpy);
+                            show_counter();
                         }
                         break;
 
@@ -129,6 +137,7 @@ $(document).ready(function(){
                             boad[tmpx+1][tmpy]=16;
                             setP(tmpx+1,tmpy);
                             setP(tmpx,tmpy);
+                            show_counter();
                         }
                         break;
                         case 40://下
@@ -139,7 +148,11 @@ $(document).ready(function(){
                             boad[tmpx][tmpy+1]=16;
                             setP(tmpx,tmpy+1);
                             setP(tmpx,tmpy);
+                            show_counter();
                         }
+                        break;
+                        default:
+                            return;
                         break;
                     }
                     checkc();
@@ -154,6 +167,7 @@ $(document).ready(function(){
 <body>
 <div id="stage" style="position:relative; top:100px;left:100px; display:table;  width:768px; height:768px; " >
 </div>	
+<div id="counter" style="position:relative; top:100px; left:100px;">Count: 0 </div>
 <div style="visibility:none">
     <div id="masterblock" align="center" style="position:absolute; display:table-cell;  width:192px; height:192px;vertical-align: middle;visibility: hidden; background-repeat:no-repeat;  font-size:36px; color:white; text-shadow: 4px 0px 16px black"><span id="number" style="vertical-align:middle; ">1</span>
     </div>
