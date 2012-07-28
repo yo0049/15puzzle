@@ -84,7 +84,7 @@ $(document).ready(function(){
 
                 $("#16").css("visibility","hidden");
                 //クリックイベント
-                $("#stage").click(function(){
+                $("#stage").click(function(event){
                     var offset = $("#stage").offset();
                     var X = Math.floor((event.pageX - offset.left)/pl);
                     var Y = Math.floor((event.pageY - offset.top)/pl);
@@ -169,7 +169,7 @@ $(document).ready(function(){
 </div>	
 <div id="counter" style="position:relative; top:100px; left:100px;">Count: 0 </div>
 <div style="visibility:none">
-    <div id="masterblock" align="center" style="position:absolute; display:table-cell;  width:192px; height:192px;vertical-align: middle;visibility: hidden; background-repeat:no-repeat;  font-size:36px; color:white; text-shadow: 4px 0px 16px black"><span id="number" style="vertical-align:middle; ">1</span>
+    <div id="masterblock" align="center" style="position:absolute; display:table-cell;  width:192px; height:192px;vertical-align: middle;visibility: hidden; background-repeat:no-repeat;  font-size:48px; color:white; text-shadow: -1px -1px 0 black,1px -1px 0 black,-1px 1px 0 black,1px 1px 0 black;"><span id="number" style="vertical-align:middle; ">1</span>
     </div>
 </div>
 </body>
