@@ -30,7 +30,7 @@ $(document).ready(function(){
         var init = function(){
             for (var i =0;i<=3;i++){
                 for (var j=0;j<=3;j++){
-                    $("#masterblock").clone().attr("id",String(boad[i][j])).text(String(boad[i][j])).css("visibility","visible").css("top",String(j*pl)+"px").css("left",String(i*pl)+"px").css("background-image","url(wall.jpg)").css("background-position",String(-i*pl)+"px "+String(-j*pl)+"px").appendTo("#stage");
+                    $("#masterblock").clone().attr("id",String(boad[i][j])).text(String(boad[i][j])).css("visibility","visible").css("top",String(j*pl)+"px").css("left",String(i*pl)+"px").css("background-position",String(-i*pl)+"px "+String(-j*pl)+"px").appendTo("#stage");
                 } }
                 var setP =function(pX,pY){
                     $("#"+String(boad[pX][pY])).css("top",String(pY*pl)+"px").css("left",String(pX*pl)+"px");
@@ -169,7 +169,7 @@ $(document).ready(function(){
 </div>	
 <div id="counter" style="position:relative; top:100px; left:100px;">Count: 0 </div>
 <div style="visibility:none">
-    <div id="masterblock" align="center" style="position:absolute; display:table-cell;  width:192px; height:192px;vertical-align: middle;visibility: hidden; background-repeat:no-repeat;  font-size:48px; color:white; text-shadow: -1px -1px 0 black,1px -1px 0 black,-1px 1px 0 black,1px 1px 0 black;"><span id="number" style="vertical-align:middle; ">1</span>
+    <div id="masterblock" align="center" style="position:absolute; display:table-cell;  width:192px; height:192px;vertical-align: middle;visibility: hidden; background-repeat:no-repeat;  font-size:48px; color:white; text-shadow: -1px -1px 0 black,1px -1px 0 black,-1px 1px 0 black,1px 1px 0 black; background-image:url(wall.jpg);" ><span id="number" style="vertical-align:middle; ">1</span>
     </div>
 </div>
 </body>
