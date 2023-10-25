@@ -37,7 +37,9 @@
                     }
                 }
                 var setP = function (pX, pY) {
-                    $("#" + String(boad[pX][pY])).css("top", String(pY * pl) + "px").css("left", String(pX * pl) + "px");
+                    // $("#" + String(boad[pX][pY])).css("top", String(pY * pl) + "px").css("left", String(pX * pl) + "px");
+                    $("#" + String(boad[pX][pY])).animate({"top": String(pY * pl) + "px" ,"left": String(pX * pl) + "px"},300);
+                    
                 }
 
                 // ブロックを交換してシャッフル。必ず偶数回行う。
@@ -73,6 +75,7 @@
                         }
                     }
                     $("#16").css("visibility", "visible");
+                    $("#" + String(boad[i][j])).css("border", "none");
                     alert("Game Clear!!");
 
                     $("#stage > *").text("");
@@ -172,14 +175,11 @@
 
 <body>
 
-    <div id="stage"
-        style=" display:table;  width:768px; height:768px; ">
+    <div id="stage" style=" display:table;  width:768px; height:768px; ">
         <br>
-        <div id="counter" >Count: 0 </div>
+        <div id="counter">Count: 0 </div>
         <div style="visibility:none">
-            <div id="masterblock" align="center"
-                style="position:absolute; display:table-cell;  width:192px; height:192px;vertical-align: middle;visibility: hidden; background-repeat:no-repeat;  font-size:48px; color:white; text-shadow: -1px -1px 0 black,1px -1px 0 black,-1px 1px 0 black,1px 1px 0 black; background-image:url(wall.jpg);">
-                <!-- <span id="number" style="vertical-align:middle; ">1</span> -->
+            <div id="masterblock" class="block" ">
             </div>
         </div>
     </div>

@@ -1,18 +1,34 @@
 #stage {
     position: absolute;
-    top: 50%; /* ページの上端から50%の位置に配置 */
-    left: 50%; /* ページの左端から50%の位置に配置 */
-    transform: translate(-50%, -50%); /* 中央配置を調整 */
-  }
-#counter{
-    margin-top:auto;
+    top: 50%;
+    /* ページの上端から50%の位置に配置 */
+    left: 50%;
+    /* ページの左端から50%の位置に配置 */
+    transform: translate(-50%, -50%);
+    /* 中央配置を調整 */
+}
+
+#counter {
+    margin-top: auto;
     position: absolute;
     top: 100%;
-    left:0;
+    left: 0;
 }
-#masterblock{
+
+.block {
+    width: 192px;
+    height: 192px;
+    vertical-align: middle;
+    visibility: hidden;
+    background-repeat: no-repeat;
+    font-size: 48px;
+    color: white;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    background-image: url(wall.jpg);
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    border: 2px solid gray;
 }
