@@ -1,6 +1,9 @@
-#stage{
-    vertical-align: middle
-}
+#stage {
+    position: absolute;
+    top: 50%; /* ページの上端から50%の位置に配置 */
+    left: 50%; /* ページの左端から50%の位置に配置 */
+    transform: translate(-50%, -50%); /* 中央配置を調整 */
+  }
 #counter{
     margin-top:auto;
     position: absolute;
