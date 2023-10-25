@@ -6,7 +6,10 @@
     <title>15puzzle</title>
     <link rel="stylesheet" href="style.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             var count = 0;
@@ -38,8 +41,8 @@
                 }
                 var setP = function (pX, pY) {
                     // $("#" + String(boad[pX][pY])).css("top", String(pY * pl) + "px").css("left", String(pX * pl) + "px");
-                    $("#" + String(boad[pX][pY])).animate({"top": String(pY * pl) + "px" ,"left": String(pX * pl) + "px"},300);
-                    
+                    $("#" + String(boad[pX][pY])).animate({ "top": String(pY * pl) + "px", "left": String(pX * pl) + "px" }, 300);
+
                 }
 
                 // ブロックを交換してシャッフル。必ず偶数回行う。
@@ -75,10 +78,10 @@
                         }
                     }
                     $("#16").css("visibility", "visible");
-                    $("#" + String(boad[i][j])).css("border", "none");
+                    $(".block").css("border", "none");
                     alert("Game Clear!!");
 
-                    $("#stage > *").text("");
+                    $(".block").text("");
                     return;
                 }
 
