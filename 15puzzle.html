@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <title>15puzzle</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script type="text/javascript">
@@ -36,7 +33,7 @@
             var init = function () {
                 for (var i = 0; i <= 3; i++) {
                     for (var j = 0; j <= 3; j++) {
-                        $("#masterblock").clone().attr("id", String(boad[i][j])).text(String(boad[i][j])).css("visibility", "visible").css("top", String(j * pl) + "px").css("left", String(i * pl) + "px").css("background-position", String(-i * pl) + "px " + String(-j * pl) + "px").appendTo("#stage");
+                        $("#masterblock").clone().attr("id", String(boad[i][j])).html("<p>" + String(boad[i][j] + "</p>")).css("visibility", "visible").css("top", String(j * pl) + "px").css("left", String(i * pl) + "px").css("background-position", String(-i * pl) + "px " + String(-j * pl) + "px").appendTo("#stage");
                     }
                 }
                 var setP = function (pX, pY) {
@@ -81,7 +78,13 @@
                     $(".block").css("border", "none");
                     alert("Game Clear!!");
 
-                    $(".block").text("");
+                    // $(".block").text("");
+                    $(".block p").animate({
+                        opacity: 0
+                    }, 3000, function () {
+                        // アニメーション完了時に要素を非表示にするか削除するなどの処理を追加できます。
+                        $(this).hide();
+                    });
                     return;
                 }
 
@@ -182,8 +185,7 @@
         <br>
         <div id="counter">Count: 0 </div>
         <div style="visibility:none">
-            <div id="masterblock" class="block" ">
-            </div>
+            <div id="masterblock" class="block" "></div>
         </div>
     </div>
 
