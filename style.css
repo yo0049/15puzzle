@@ -1,0 +1,15 @@
+#stage{
+    vertical-align: middle
+}
+#counter{
+    margin-top:auto;
+    position: absolute;
+    top: 100%;
+    left:0;
+}
+#masterblock{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
