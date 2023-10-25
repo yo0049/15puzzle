@@ -1,176 +1,184 @@
 <!DOCTYPE HTML>
 <html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>15puzzle</title>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-    var count=0;
-    var pl = 192;
-    //boad初期化
-    var boad=[];
-    for (var i=0;i<=3;i++){
-        boad[i]=[];
-        for(var j=0;j<=3;j++){
-            boad[i][j]=i+j*4+1;
-        }      }
-        //与えられた数字の位置を返す
-        var getP = function(n){
-            var pos={x:0,y:0};
-            for (var i=0;i<=3;i++){
-                for(var j=0;j<=3;j++){
-                    if(boad[i][j]==n){ pos.x=i;pos.y=j;};
+<head>
+    <meta charset="UTF-8">
+    <title>15puzzle</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var count = 0;
+            var pl = 192;
+            //boad初期化
+            var boad = [];
+            for (var i = 0; i <= 3; i++) {
+                boad[i] = [];
+                for (var j = 0; j <= 3; j++) {
+                    boad[i][j] = i + j * 4 + 1;
                 }
             }
-            return pos; 
-        }
-        var $m=$("#masterblock").html();
-        var init = function(){
-            for (var i =0;i<=3;i++){
-                for (var j=0;j<=3;j++){
-                    $("#masterblock").clone().attr("id",String(boad[i][j])).text(String(boad[i][j])).css("visibility","visible").css("top",String(j*pl)+"px").css("left",String(i*pl)+"px").css("background-position",String(-i*pl)+"px "+String(-j*pl)+"px").appendTo("#stage");
-                } }
-                var setP =function(pX,pY){
-                    $("#"+String(boad[pX][pY])).css("top",String(pY*pl)+"px").css("left",String(pX*pl)+"px");
+            //与えられた数字の位置を返す
+            var getP = function (n) {
+                var pos = { x: 0, y: 0 };
+                for (var i = 0; i <= 3; i++) {
+                    for (var j = 0; j <= 3; j++) {
+                        if (boad[i][j] == n) { pos.x = i; pos.y = j; };
+                    }
+                }
+                return pos;
+            }
+            var $m = $("#masterblock").html();
+            var init = function () {
+                for (var i = 0; i <= 3; i++) {
+                    for (var j = 0; j <= 3; j++) {
+                        $("#masterblock").clone().attr("id", String(boad[i][j])).text(String(boad[i][j])).css("visibility", "visible").css("top", String(j * pl) + "px").css("left", String(i * pl) + "px").css("background-position", String(-i * pl) + "px " + String(-j * pl) + "px").appendTo("#stage");
+                    }
+                }
+                var setP = function (pX, pY) {
+                    $("#" + String(boad[pX][pY])).css("top", String(pY * pl) + "px").css("left", String(pX * pl) + "px");
                 }
 
                 // ブロックを交換してシャッフル。必ず偶数回行う。
-                var i=0;
-                var tmpx1=0,tmpy1=0,tmpv1=0,tmpx2=0,tmpy2=0,tmpv2=0;
-                while(i<1000){ 
+                var i = 0;
+                var tmpx1 = 0, tmpy1 = 0, tmpv1 = 0, tmpx2 = 0, tmpy2 = 0, tmpv2 = 0;
+                while (i < 1000) {
 
-                    tmpx1=Math.floor(Math.random()*4);
-                    tmpy1=Math.floor(Math.random()*4);
+                    tmpx1 = Math.floor(Math.random() * 4);
+                    tmpy1 = Math.floor(Math.random() * 4);
                     tmpv1 = boad[tmpx1][tmpy1];
 
-                    tmpx2=Math.floor(Math.random()*4);
-                    tmpy2=Math.floor(Math.random()*4);
+                    tmpx2 = Math.floor(Math.random() * 4);
+                    tmpy2 = Math.floor(Math.random() * 4);
                     tmpv2 = boad[tmpx2][tmpy2];
-                    if(tmpx1!=tmpx2 || tmpy1!=tmpy2){
-                        boad[tmpx1][tmpy1]=tmpv2;
-                        boad[tmpx2][tmpy2]=tmpv1;
+                    if (tmpx1 != tmpx2 || tmpy1 != tmpy2) {
+                        boad[tmpx1][tmpy1] = tmpv2;
+                        boad[tmpx2][tmpy2] = tmpv1;
                         i++;
                     }
 
                 }
-                for(var i =0;i<=3;i++){
-                    for(var j=0;j<=3;j++){
-                        setP(i,j);
+                for (var i = 0; i <= 3; i++) {
+                    for (var j = 0; j <= 3; j++) {
+                        setP(i, j);
                     }
                 }
 
                 //クリアのチェック
-                var checkc=function(){
-                    for(var i=0;i<=3;i++){
-                        for(var j=0;j<=3;j++){
-                            if(boad[i][j]!=i+j*4+1){ return; }
+                var checkc = function () {
+                    for (var i = 0; i <= 3; i++) {
+                        for (var j = 0; j <= 3; j++) {
+                            if (boad[i][j] != i + j * 4 + 1) { return; }
                         }
                     }
-                    $("#16").css("visibility","visible");
+                    $("#16").css("visibility", "visible");
                     alert("Game Clear!!");
 
                     $("#stage > *").text("");
                     return;
                 }
 
-                var show_counter = function(){
+                var show_counter = function () {
                     count++;
-                    $("#counter").text("Count: "+String(count));
+                    $("#counter").text("Count: " + String(count));
                 }
 
 
 
-                $("#16").css("visibility","hidden");
+                $("#16").css("visibility", "hidden");
                 //クリックイベント
-                $("#stage").click(function(event){
+                $("#stage").click(function (event) {
                     var offset = $("#stage").offset();
-                    var X = Math.floor((event.pageX - offset.left)/pl);
-                    var Y = Math.floor((event.pageY - offset.top)/pl);
-                    for(var dx = -1;dx<=1;dx++){
-                        for(var dy = -1;dy<=1;dy++){
-                            if((dx==0||dy==0)&&(X+dx>=0)&&(X+dx <=3)&&(Y+dy>=0)&&(Y+dy<=3)&& (boad[X+dx][Y+dy]==16)){
-                                boad[X+dx][Y+dy]= boad[X][Y];
-                                boad[X][Y]=16;
-                                setP(X,Y);
-                                setP(X+dx,Y+dy);
+                    var X = Math.floor((event.pageX - offset.left) / pl);
+                    var Y = Math.floor((event.pageY - offset.top) / pl);
+                    for (var dx = -1; dx <= 1; dx++) {
+                        for (var dy = -1; dy <= 1; dy++) {
+                            if ((dx == 0 || dy == 0) && (X + dx >= 0) && (X + dx <= 3) && (Y + dy >= 0) && (Y + dy <= 3) && (boad[X + dx][Y + dy] == 16)) {
+                                boad[X + dx][Y + dy] = boad[X][Y];
+                                boad[X][Y] = 16;
+                                setP(X, Y);
+                                setP(X + dx, Y + dy);
                                 show_counter();
                                 checkc();
                                 break;
                             }
-                        }}
-                } );
+                        }
+                    }
+                });
                 //  keydownイベント
                 // swichの前にgetPをしたいがそうすると、矢印キーを連打した時に挙動がおかしくなる。
-                $("body").keydown(function(e){
-                    var tmpx=0,tmpy=0;
-                    switch(e.which){
+                $("body").keydown(function (e) {
+                    var tmpx = 0, tmpy = 0;
+                    switch (e.which) {
                         case 37://左
-                            tmpx=getP(16).x;
-                        tmpy=getP(16).y;
-                        if(tmpx>0){
-                            boad[tmpx][tmpy]=boad[tmpx-1][tmpy];
-                            boad[tmpx-1][tmpy]=16;
-                            setP(tmpx-1,tmpy);
-                            setP(tmpx,tmpy);
-                            show_counter();
-                        }
-                        break;
+                            tmpx = getP(16).x;
+                            tmpy = getP(16).y;
+                            if (tmpx > 0) {
+                                boad[tmpx][tmpy] = boad[tmpx - 1][tmpy];
+                                boad[tmpx - 1][tmpy] = 16;
+                                setP(tmpx - 1, tmpy);
+                                setP(tmpx, tmpy);
+                                show_counter();
+                            }
+                            break;
                         case 38://上
-                            tmpx=getP(16).x;
-                        tmpy=getP(16).y;
-                        if(tmpy>0){
-                            boad[tmpx][tmpy]=boad[tmpx][tmpy-1];
-                            boad[tmpx][tmpy-1]=16;
-                            setP(tmpx,tmpy-1);
-                            setP(tmpx,tmpy);
-                            show_counter();
-                        }
-                        break;
+                            tmpx = getP(16).x;
+                            tmpy = getP(16).y;
+                            if (tmpy > 0) {
+                                boad[tmpx][tmpy] = boad[tmpx][tmpy - 1];
+                                boad[tmpx][tmpy - 1] = 16;
+                                setP(tmpx, tmpy - 1);
+                                setP(tmpx, tmpy);
+                                show_counter();
+                            }
+                            break;
 
                         case 39://右
-                            tmpx=getP(16).x;
-                        tmpy=getP(16).y;
-                        if(tmpx<3){
-                            boad[tmpx][tmpy]=boad[tmpx+1][tmpy];
-                            boad[tmpx+1][tmpy]=16;
-                            setP(tmpx+1,tmpy);
-                            setP(tmpx,tmpy);
-                            show_counter();
-                        }
-                        break;
+                            tmpx = getP(16).x;
+                            tmpy = getP(16).y;
+                            if (tmpx < 3) {
+                                boad[tmpx][tmpy] = boad[tmpx + 1][tmpy];
+                                boad[tmpx + 1][tmpy] = 16;
+                                setP(tmpx + 1, tmpy);
+                                setP(tmpx, tmpy);
+                                show_counter();
+                            }
+                            break;
                         case 40://下
-                            tmpx=getP(16).x;
-                        tmpy=getP(16).y;
-                        if(tmpy<3){
-                            boad[tmpx][tmpy]=boad[tmpx][tmpy+1];
-                            boad[tmpx][tmpy+1]=16;
-                            setP(tmpx,tmpy+1);
-                            setP(tmpx,tmpy);
-                            show_counter();
-                        }
-                        break;
+                            tmpx = getP(16).x;
+                            tmpy = getP(16).y;
+                            if (tmpy < 3) {
+                                boad[tmpx][tmpy] = boad[tmpx][tmpy + 1];
+                                boad[tmpx][tmpy + 1] = 16;
+                                setP(tmpx, tmpy + 1);
+                                setP(tmpx, tmpy);
+                                show_counter();
+                            }
+                            break;
                         default:
                             return;
-                        break;
+                            break;
                     }
                     checkc();
                 })
 
-        }
-        init();
-})    
+            }
+            init();
+        })
 
-</script>
+    </script>
 </head>
+
 <body>
-<div id="stage" style="position:relative; top:100px;left:100px; display:table;  width:768px; height:768px; " >
-</div>	
-<div id="counter" style="position:relative; top:100px; left:100px;">Count: 0 </div>
-<div style="visibility:none">
-    <div id="masterblock" align="center" style="position:absolute; display:table-cell;  width:192px; height:192px;vertical-align: middle;visibility: hidden; background-repeat:no-repeat;  font-size:48px; color:white; text-shadow: -1px -1px 0 black,1px -1px 0 black,-1px 1px 0 black,1px 1px 0 black; background-image:url(wall.jpg);" ><span id="number" style="vertical-align:middle; ">1</span>
+    <div id="stage" style="position:relative; top:100px;left:100px; display:table;  width:768px; height:768px; ">
     </div>
-</div>
+    <div id="counter" style="position:relative; top:100px; left:100px;">Count: 0 </div>
+    <div style="visibility:none">
+        <div id="masterblock" align="center"
+            style="position:absolute; display:table-cell;  width:192px; height:192px;vertical-align: middle;visibility: hidden; background-repeat:no-repeat;  font-size:48px; color:white; text-shadow: -1px -1px 0 black,1px -1px 0 black,-1px 1px 0 black,1px 1px 0 black; background-image:url(wall.jpg);">
+            <span id="number" style="vertical-align:middle; ">1</span>
+        </div>
+    </div>
 </body>
+
 </html>
