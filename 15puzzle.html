@@ -42,25 +42,31 @@
 
                 }
 
-                // ブロックを交換してシャッフル。必ず偶数回行う。
+                // ブロックを交換してシャッフル。
                 var i = 0;
-                var tmpx1 = 0, tmpy1 = 0, tmpv1 = 0, tmpx2 = 0, tmpy2 = 0, tmpv2 = 0;
                 while (i < 1000) {
+                    var emptyPos = getP(16);
+                    var directions = [];
 
-                    tmpx1 = Math.floor(Math.random() * 4);
-                    tmpy1 = Math.floor(Math.random() * 4);
-                    tmpv1 = boad[tmpx1][tmpy1];
+                    // 移動可能な方向を収集
+                    if (emptyPos.x > 0) directions.push({ dx: -1, dy: 0 }); // 左
+                    if (emptyPos.x < 3) directions.push({ dx: 1, dy: 0 });  // 右
+                    if (emptyPos.y > 0) directions.push({ dx: 0, dy: -1 }); // 上
+                    if (emptyPos.y < 3) directions.push({ dx: 0, dy: 1 });  // 下
 
-                    tmpx2 = Math.floor(Math.random() * 4);
-                    tmpy2 = Math.floor(Math.random() * 4);
-                    tmpv2 = boad[tmpx2][tmpy2];
-                    if (tmpx1 != tmpx2 || tmpy1 != tmpy2) {
-                        boad[tmpx1][tmpy1] = tmpv2;
-                        boad[tmpx2][tmpy2] = tmpv1;
-                        i++;
-                    }
+                    // ランダムな方向を選択
+                    var dir = directions[Math.floor(Math.random() * directions.length)];
 
+                    // 空きマス（16）と隣接するマスを交換
+                    var newX = emptyPos.x + dir.dx;
+                    var newY = emptyPos.y + dir.dy;
+
+                    boad[emptyPos.x][emptyPos.y] = boad[newX][newY];
+                    boad[newX][newY] = 16;
+
+                    i++;
                 }
+
                 for (var i = 0; i <= 3; i++) {
                     for (var j = 0; j <= 3; j++) {
                         setP(i, j);
